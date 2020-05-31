@@ -18,6 +18,8 @@ checkpoints = iter([" Chimney Rock", " Fort Laramie", " Independence Rock", " So
 #life/death list:
 life_death =  [life, death]
 
+#logic functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 #continue function
 def continue_game_a():
     check = next(checkpoints)
@@ -217,16 +219,15 @@ def bandits_b():
     elif mod_band_choice == "teleport":
         time_space()
         print("Amazing! You teleported safetly to Oregon City! You have finally beat Oregon Trail Lite!")
-
-
     else:
         invalid_choice()
         return bandits_b()
+#supporting functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #invalid function
 def invalid_choice():
     print("That is not a valid choice. Please try again.")
 #end of game function
-    
+    #vol_end
 def vol_end():
     print("Thanks for playing! Try again next time!")
 
@@ -288,83 +289,6 @@ print()
 
 
 
-
-#Game Introduction:
-  
-    #Explain briefly the goal of the game.
-#General Store:
-    #User is assigned a dollar amount.
-    #User is presented with surivial gear options.
-    #Options are:    
-       # Most prepared = highest cost, leaving user with less travel money
-       # Moderately prepared = middle cost, leaving user with some travel money
-       # Least prepared = lowest cost, most highest amount of travel money.
-    #User picks level of preparedness.
-    #The level of preparedness is assigned to User throughout the game.
-#Journey:
-    #There are 6 checkpoints/locations throughout the trail.
-   # At the first 5 checkpoints a random event occurs.
-    #The 6th checkpoint is Oregon City/end of game. 
-    #1. Chimney Rock
-   # 2. Fort Laramie
-   # 3. Independence Rock
-    #4. Soda Springs
-    #5. Dalles
-    #6. Oregon City
-   # Random Events are:
-   # 1. Snake Bite
-       # options for Most Prepared
-           # First Aid and continue
-        #options for Moderately Prepared
-           # First Aid 
-           # Wait it out
-           # both options return randomly picked continue or die.
-        #options for least Prepared
-           # Wait it out and return randomly picked continue or die
-    #2. Cross a river
-        #options for Most Prepared
-           # Ford the river and return randomly picked continue or tip the wagon over and game ends.
-        #options for Moderately Prepared
-           # Ford the river
-            #Hire a Ferry
-            #both options return randomly picked continue or tip the wagon over and game ends.
-        #options for least Prepared
-           # Hire Ferry and continue
-   # 3. Dysentary 
-        #options for Most Prepared
-           # First Aid and continue
-       # options for Moderately Prepared
-           # First Aid 
-            #Wait it out
-            #both options return randomly picked continue or die.
-        #options for least Prepared
-           # Wait it out and return randomly picked continue or die
-    #4. Alien Invasion
-        #options for Most Prepared
-            # Trade supplies return randomly picked continue or abduction/end of game.
-        #options for Moderately Prepared
-            #Pay them off and continue
-            #Trade Supplies and return randomly picked continue or die.
-        #options for least Prepared
-           # Pay them off and continue
-    #5. Bandits
-      # options for Most Prepared
-            # Trade supplies return randomly picked continue or end of game.
-        #options for Moderately Prepared
-           # Pay them off and continue
-            #Trade Supplies and return randomly picked continue or die.
-        #options for least Prepared
-            #Pay them off and continue
-
-    #If the game ends at a certain check point then a message declares that the game ended and the User made it as far as the checkpoint
-
-    #If the game ends at Oregon City a message declares that the User has made it to their destination and won the game.
-    
-
-#Nice to haves:
-   # -picture between checkpoints
-   # -cheat code
-###
 
 
 
