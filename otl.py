@@ -265,26 +265,16 @@ def start():
 #Game Introduction:
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Welcome to Oregon Trail~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 #Explain briefly the goal of the game.
-print()
-print()
-print()
+print('\n','\n','\n','\n')
 print("                     The goal of this game is to travel the Oregon Trail all the way to Oregon City!")
-print()
-print()
-print()
+print('\n','\n','\n')
 #General Store:
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~You are at the General Store~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print()
-print("                     Here are your Supplies Package options. You have $500.")
-print()
-print("                     Option A: Complete Survival Package ~ includes Food,Water, Tools, Clothing, Oxen, First Aid. Cost: $500")
-print()
-print("                     Option B: Medium Survival Package ~ includes Food, Water, Oxen, First Aid. Cost: $250")
-print()
-print("                     Option C: Minimalist Package ~ includes Food, Water,Oxen. Cost: $100")
-print()
+print('\n',"                     Here are your Supplies Package options. You have $500.",'\n')
+print('\n',"                     Option A: Complete Survival Package ~ includes Food,Water, Tools, Clothing, Oxen, First Aid. Cost: $500",'\n')
+print('\n',"                     Option B: Medium Survival Package ~ includes Food, Water, Oxen, First Aid. Cost: $250",'\n')
+print('\n',"                     Option C: Minimalist Package ~ includes Food, Water,Oxen. Cost: $100",'\n')
 sup_choices()
-print()
 
 
 
