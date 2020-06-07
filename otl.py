@@ -1,228 +1,196 @@
 import random
 import time
-import sys
-#variables:
-global life
-global death
 
-life = "You have survived! You can continue on the trail..."
-death = "Sorry! It didn't work! You were not able to complete Oregon Trail Lite. Please try again!"
-
-#random events list:
-ran_events = [" Snake Bite!", " You have to cross a river!", " You have dysentary!", " Aliens!", " Bandits!"]
-
-#checkpoints list:
-
-checkpoints = iter([" Chimney Rock", " Fort Laramie", " Independence Rock", " Soda Springs", " The Dalles", "Oregon City!"])
-
-#life/death list:
-life_death =  [life, death]
-
-#logic functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#continue function
-def continue_game_a():
-    check = next(checkpoints)
-    print("You have made it to ", check)
-    if check != "Oregon City!":
-        prompt = input("Would you like to continue? Type Y / N ")
-        if prompt.upper() == "Y":
-                
-            time_space()
-            events_a()
-        elif prompt.upper() == "N":
-            vol_end()
-        else:
-            invalid_choice()
-            continue_game_a()
-    else:
-        win_game()
-        sys.exit
-def continue_game_b():
-    check = next(checkpoints)
-    print("You have made it to ", check)
-    if check != "Oregon City!":
-        prompt = input("Would you like to continue? Type Y / N ")
-        if prompt.upper() == "Y":
-                
-            time.sleep(3)
-            add_spaces
-            events_b()
-        elif prompt.upper() == "N":
-            vol_end()
-        else:
-            invalid_choice()
-            continue_game_b()
-    else:
-        win_game()
-        sys.exit
-def continue_game_c():
-    check = next(checkpoints)
-    print("You have made it to ", check)
-    if check != "Oregon City!":
-        prompt = input("Would you like to continue? Type Y / N ")
-        if prompt.upper() == "Y":
-                
-            time.sleep(3)
-            add_spaces
-            events_c()
-        elif prompt.upper() == "N":
-            vol_end()
-        else:
-            invalid_choice()
-            continue_game_c()
-    else:
-        win_game()
-        sys.exit
-#random death
-def random_death_a():
-    if random.choice(life_death) == life:
-        print(life)
-        continue_game_a()
-    else: 
-        print(death)
-
-def random_death_b():
-    if random.choice(life_death) == life:
-        print(life)
-        continue_game_b()
-    else: 
-        print(death)
-
-def random_death_c():
-    if random.choice(life_death) == life: 
-        print(life)
-        continue_game_c()
-    else: 
-        print(death)
+#pick game path & run game:
+def play_game():
+    print("""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Welcome to Oregon Trail~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-# packages function:
-def sup_choices():
+
+                     The goal of this game is to travel the Oregon Trail all the way to Oregon City!
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~You are at the General Store~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                     Here are your Supplies Package options. You have $500.
+
+                     Option A: Complete Survival Package ~ includes Food,Water, Tools, Clothing, Oxen, First Aid. Cost: $500
+
+                     Option B: Medium Survival Package ~ includes Food, Water, Oxen, First Aid. Cost: $250
+
+                     Option C: Minimalist Package ~ includes Food, Water,Oxen. Cost: $100""")
     choice = input("Type A, B, or C for your choice:> ")
     if choice.upper() == "A":
+        supply = "A"
         start()
-        events_a()
+        game_path(supply)
     elif choice.upper() == "B":
+        supply = "B"
         start()
-        events_b()
+        game_path(supply)
     elif choice.upper() == "C":
+        supply = "C"
         start()
-        events_c()
+        game_path(supply)
     else:
         invalid_choice()
-        sup_choices()
-   
-#random event function:
-def events_a():
+        play_game()
+
+#game_paths
+
+def game_path(supply):
+    ran_events = [" Snake Bite!", " Bandits!", " You have to cross a river!", " You have dysentary!", " Aliens!"]
+    time.sleep(3)
     new_event = random.choice(ran_events)
     print("Oh no!" + new_event)
     add_spaces()
+# snake bite
     if new_event == " Snake Bite!":
         time_space()
-        first_aid()
-        time.sleep(3)
-        return continue_game_a()
-    elif new_event == " You have to cross a river!":
-        time.sleep(3)
-        print("You do not have enough travel money to hire a ferry. You have to ford the river...")
-        time_space()
-        return random_death_a()
-    elif new_event == " You have dysentary!":
-        first_aid()
-        time_space()
-        return continue_game_a()
-    elif new_event == " Aliens!":
-        no_money()
-        time_space()
-        return random_death_a()
-    elif new_event == " Bandits!":
-        no_money()
-        time_space()
-        random_death_a()
-    else:
-        win_game()
-
-
-#events functions:
-def events_b():
-    new_event = random.choice(ran_events)
-    print("Oh no!" + new_event)
-    if new_event == " Snake Bite!":
-        time.sleep(3)
-        input("You can choose 1.) First Aid Kit or 2.) Wait it out ? Type 1 or 2 > ")
-        random_death_b()
-    elif new_event == " You have to cross a river!":
-        time.sleep(3)
-        input("You can choose 1.) Hire a Ferry or 2.) Ford the river ? Type 1 or 2 > ")
-        random_death_b()
-    elif new_event == " You have dysentary!":
-        first_aid()
-        time.sleep(3)
-        continue_game_b()
-    elif new_event == " Aliens!":
-        time.sleep(3)
-        mod_aliens()
-    elif new_event == " Bandits!":
-        time.sleep(3)
-        bandits_b()
-    else:
-        win_game()
-
-def events_c():
-    new_event = random.choice(ran_events)
-    print("Oh no!" + new_event)
-    if new_event == " Snake Bite!" :
-        time_space()
-        no_first_aid()
-        random_death_c()
-    elif new_event == " You have to cross a river!" :
-        time_space()
-        print("You have enough money to hire a ferry and are able to continue on the trail")
-        continue_game_c()
-    elif new_event == " You have dysentary!" :
-       no_first_aid()
-       time_space()
-       random_death_c()
-        
-    elif new_event == " Aliens!" :
-        time_space()
-        print("You have enough money to pay off the Aliens. You are allowed to continue on....")
-        continue_game_c()
-    elif new_event == " Bandits!":
-        time_space()
-        print("You have enough money to pay off the Bandits. You are allowed to continue on....")
-        continue_game_c()
-    else:
-        win_game()
-#Choice B functions:
-def mod_aliens():
-        mod_alien = input("You can try to 1.) pay off the Aliens or 2.) Ask if they accept a trade of your supplies. Type 1 or 2 for your choice.")
-        if mod_alien == "1":
+        if supply == "A":
+            first_aid()
+            time.sleep(3)
+            continue_path(supply)
+        elif supply == "B":
+            time.sleep(3)
+            input("You can choose 1.) First Aid Kit or 2.) Wait it out ? Type 1 or 2 > ")
+            random_death(supply)
+        elif supply == "C":
             time_space()
-            print("It worked!")
-            return continue_game_b()
-        elif mod_alien == "2":
-            return random_death_b()
+            no_first_aid()
+            random_death(supply)
+        else:
+            return
+#river
+    elif new_event == " You have to cross a river!":
+        time.sleep(3)
+        if supply == "A":
+            print("You do not have enough travel money to hire a ferry. You have to ford the river...")
+            time_space()
+            random_death(supply)
+        elif supply == "B":
+            river_b = input("You can choose 1.) hire a ferry or 2.) ford the river? Type 1 or 2 > ")
+            if river_b == "1":
+                continue_path(supply)
+            else:
+                random_death(supply)
+        elif supply == "C":
+            print("You have enough money to hire a ferry and are able to continue on the trail")
+            continue_path(supply)
+        else:
+            return
+#dysentary
+    elif new_event == " You have dysentary!":
+        time.sleep(3)
+        if supply == "A":
+            first_aid()
+            time_space()
+            continue_path(supply)
+        elif supply == "B":
+            first_aid()
+            time.sleep(3)
+            continue_path(supply)
+        elif supply == "C":
+            no_first_aid()
+            time_space()
+            random_death(supply)
+        else:
+            return
+ #aliens
+    elif new_event == " Aliens!":
+        if supply == "A":
+            no_money()
+            time_space()
+            random_death(supply)
+        elif supply == "B":
+            mod_band_choice = input("You can try to 1.) pay off the Aliens or 2.) Ask if they accept a trade of your supplies. Type 1 or 2 for your choice.")
+            if mod_band_choice == "1":
+                time_space()
+                print("It worked!")
+                continue_path(supply)
+            elif mod_band_choice == "2":
+                random_death(supply)
+            elif mod_band_choice == "teleport":
+                time_space()
+                print("Amazing! You teleported safetly to Oregon City! You have finally beat Oregon Trail Lite!")
+            else:
+                invalid_choice()
+                return game_path(supply)
+        elif supply == "C":
+            time_space()
+            print("You have enough money to pay off the Aliens. You are allowed to continue on....")
+            continue_path(supply)
+        else:
+            return
+   
+#bandits
+    elif new_event == " Bandits!":
+        time.sleep(3)
+        if supply == "A":
+            no_money()
+            time_space()
+            random_death(supply)
+        elif supply == "B":
+            mod_band_choice = input("You can try to 1.) pay off the Bandits or 2.) Ask if they accept a trade of your supplies. Type 1 or 2 for your choice.")
+            if mod_band_choice == "1":
+                time_space()
+                print("It worked!")
+                continue_path(supply)
+            elif mod_band_choice == "2":
+                random_death(supply)
+            elif mod_band_choice == "teleport":
+                time_space()
+                print("Amazing! You teleported safetly to Oregon City! You have finally beat Oregon Trail Lite!")
+            else:
+                invalid_choice()
+                return game_path()
+        elif supply == "C":
+            time_space()
+            print("You have enough money to pay off the Bandits. You are allowed to continue on....")
+            continue_path(supply)
+    else:
+        return
+       
+def continue_path(supply):
+    checkpoints = iter([" Chimney Rock", " Fort Laramie", " Independence Rock", " Soda Springs", " The Dalles", "Oregon City!"])
+    check = next(checkpoints)
+    print("You have made it to ", check)
+    if check != "Oregon City!":
+        prompt = input("Would you like to continue? Type Y / N ")
+        time.sleep(3)
+        add_spaces
+        if prompt.upper() == "Y":
+            game_path(supply)
+        elif prompt.upper() == "N":
+            vol_end()
         else:
             invalid_choice()
-            return mod_aliens()
-        
-def bandits_b():
-    mod_band_choice = input("You can try to 1.) pay off the Bandits or 2.) Ask if they accept a trade of your supplies. Type 1 or 2 for your choice.")
-    if mod_band_choice == "1":
-        time_space()
-        print("It worked!")
-        continue_game_b()
-    elif mod_band_choice == "2":
-        random_death_b()
-    elif mod_band_choice == "teleport":
-        time_space()
-        print("Amazing! You teleported safetly to Oregon City! You have finally beat Oregon Trail Lite!")
+            continue_path(supply)
     else:
-        invalid_choice()
-        return bandits_b()
-#supporting functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        win_game()
+        
+def random_death(supply):
+    life = "You have survived! You can continue on the trail..."
+    death = "Sorry! It didn't work! You were not able to complete Oregon Trail Lite. Please try again!"
+    life_death =  [life, death]
+    if random.choice(life_death) == life:
+        if supply == 'A':
+            print(life)
+            continue_path(supply)
+        elif supply == 'B':
+            print(life)
+            continue_path(supply) 
+        elif supply == 'C': 
+            print(life)
+            continue_path(supply)
+        else:
+            return
+    else: 
+        print(death)
+
+#helper functions:
+
 #invalid function
 def invalid_choice():
     print("That is not a valid choice. Please try again.")
@@ -244,10 +212,12 @@ def first_aid():
 #no_first aid
 def no_first_aid():
     print("Unfortunately, you did not purchase a First Aid Kit with your supplies. You will have to wait to see if your health will be restored!")
+    time_space()
 #no money
 def no_money():
     time_space()
     print("They are demanding money, but you do not have any left after buying supplies. Instead, you hope they will accept some of your vaulable belongings.")
+    time_space()
 # spacing function
 def add_spaces():
     print()
@@ -256,105 +226,11 @@ def add_spaces():
     print(".........")
     print("......................")
     print("......................................................................")
+#game starts:
 def start():
     print("                                      Good choice! Let's hit the trail...")
     add_spaces()
     print("Welcome! You are leaving from Independence, Missouri! Good Luck!")
     time_space()
 
-#Game Introduction:
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Welcome to Oregon Trail~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-#Explain briefly the goal of the game.
-print('\n','\n','\n','\n')
-print("                     The goal of this game is to travel the Oregon Trail all the way to Oregon City!")
-print('\n','\n','\n')
-#General Store:
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~You are at the General Store~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print('\n',"                     Here are your Supplies Package options. You have $500.",'\n')
-print('\n',"                     Option A: Complete Survival Package ~ includes Food,Water, Tools, Clothing, Oxen, First Aid. Cost: $500",'\n')
-print('\n',"                     Option B: Medium Survival Package ~ includes Food, Water, Oxen, First Aid. Cost: $250",'\n')
-print('\n',"                     Option C: Minimalist Package ~ includes Food, Water,Oxen. Cost: $100",'\n')
-sup_choices()
-
-
-
-
-
-
-
-#Game Introduction:
-    #Have user enter name.
-    #Explain briefly the goal of the game.
-#General Store:
-    #User is assigned a dollar amount.
-    #User is presented with surivial gear options.
-    #Options are:    
-       # Most prepared = highest cost, leaving user with less travel money
-       # Moderately prepared = middle cost, leaving user with some travel money
-       # Least prepared = lowest cost, most highest amount of travel money.
-    #User picks level of preparedness.
-    #The level of preparedness is assigned to User throughout the game.
-#Journey:
-    #There are 6 checkpoints/locations throughout the trail.
-   # At the first 5 checkpoints a random event occurs.
-    #The 6th checkpoint is Oregon City/end of game. 
-    #1. Chimney Rock
-   # 2. Fort Laramie
-   # 3. Independence Rock
-    #4. Soda Springs
-    #5. Dalles
-    #6. Oregon City
-   # Random Events are:
-   # 1. Snake Bite
-       # options for Most Prepared
-           # First Aid and continue
-        #options for Moderately Prepared
-           # First Aid 
-           # Wait it out
-           # both options return randomly picked continue or die.
-        #options for least Prepared
-           # Wait it out and return randomly picked continue or die
-    #2. Cross a river
-        #options for Most Prepared
-           # Ford the river and return randomly picked continue or tip the wagon over and game ends.
-        #options for Moderately Prepared
-           # Ford the river
-            #Hire a Ferry
-            #both options return randomly picked continue or tip the wagon over and game ends.
-        #options for least Prepared
-           # Hire Ferry and continue
-   # 3. Dysentary 
-        #options for Most Prepared
-           # First Aid and continue
-       # options for Moderately Prepared
-           # First Aid 
-            #Wait it out
-            #both options return randomly picked continue or die.
-        #options for least Prepared
-           # Wait it out and return randomly picked continue or die
-    #4. Alien Invasion
-        #options for Most Prepared
-            # Trade supplies return randomly picked continue or abduction/end of game.
-        #options for Moderately Prepared
-            #Pay them off and continue
-            #Trade Supplies and return randomly picked continue or die.
-        #options for least Prepared
-           # Pay them off and continue
-    #5. Bandits
-      # options for Most Prepared
-            # Trade supplies return randomly picked continue or end of game.
-        #options for Moderately Prepared
-           # Pay them off and continue
-            #Trade Supplies and return randomly picked continue or die.
-        #options for least Prepared
-            #Pay them off and continue
-
-    #If the game ends at a certain check point then a message declares that the game ended and the User made it as far as the checkpoint
-
-    #If the game ends at Oregon City a message declares that the User has made it to their destination and won the game.
-    
-
-#Nice to haves:
-   # -picture between checkpoints
-   # -cheat code
-###
+play_game()
