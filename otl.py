@@ -1,6 +1,8 @@
 import random
 import time
 
+checkpoints = iter([" Chimney Rock", " Fort Laramie", " Independence Rock", " Soda Springs", " The Dalles", "Oregon City!"])
+
 #pick game path & run game:
 def play_game():
     print("""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Welcome to Oregon Trail~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -153,7 +155,7 @@ def game_path(supply):
         return
        
 def continue_path(supply):
-    checkpoints = iter([" Chimney Rock", " Fort Laramie", " Independence Rock", " Soda Springs", " The Dalles", "Oregon City!"])
+   
     check = next(checkpoints)
     print("You have made it to ", check)
     if check != "Oregon City!":
