@@ -1,4 +1,4 @@
-# otlite
+# oregon trail game in python
 
 <h2> My First Original Program! <h2>
 
